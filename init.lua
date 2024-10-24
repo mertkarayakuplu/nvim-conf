@@ -1,3 +1,10 @@
+-- util
+local map = function(mode, lhs, rhs, opts)
+    local options = { noremap = true, silent = true }
+    options = vim.tbl_extend("force", options, opts or {})
+    vim.keymap.set(mode, lhs, rhs, options)
+end
+
 -- remap space as leader key
 vim.api.nvim_set_keymap(
     "",
@@ -41,6 +48,7 @@ require("lazy").setup({
         priority = 1000,
         opts = {},
     },
+    -- mason / lsp
     {
         "williamboman/mason.nvim",
     },
@@ -53,6 +61,17 @@ require("lazy").setup({
     {
         "stevearc/conform.nvim",
         opts = {},
+    },
+    -- sidebar
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+            "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+        },
     },
 })
 
@@ -94,7 +113,6 @@ require("tokyonight").setup({
     ---@param colors ColorScheme
     on_highlights = function(highlights, colors) end,
 })
-vim.cmd([[colorscheme tokyonight]])
 
 -- mason
 require("mason").setup()
@@ -115,3 +133,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         require("conform").format({ bufnr = args.buf })
     end,
 })
+
+-- shortcuts / settings
+
+vim.cmd([[colorscheme tokyonight]])
+map("n", "<leader>e", ":Neotree focus toggle=true<CR>")
