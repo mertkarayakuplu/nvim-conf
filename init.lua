@@ -41,6 +41,12 @@ require("lazy").setup({
         "williamboman/mason.nvim",
     },
     {
+        "williamboman/mason-lspconfig.nvim",
+    },
+    {
+        "neovim/nvim-lspconfig",
+    },
+    {
         "stevearc/conform.nvim",
         opts = {},
     },
@@ -88,6 +94,9 @@ vim.cmd([[colorscheme tokyonight]])
 
 -- mason
 require("mason").setup()
+
+-- lsp
+require("mason-lspconfig").setup()
 
 -- format
 require("conform").setup({
