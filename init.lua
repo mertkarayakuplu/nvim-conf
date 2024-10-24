@@ -32,6 +32,10 @@ require("lazy").setup({
 	},
 	{
     "williamboman/mason.nvim",
+  },
+  {
+  'stevearc/conform.nvim',
+  opts = {},
   }
 })
 
