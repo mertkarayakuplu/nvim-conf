@@ -1,3 +1,13 @@
+-- remap space as leader key
+vim.api.nvim_set_keymap(
+    "",
+    "<Space>",
+    "<Nop>",
+    { noremap = true, silent = true }
+) -- no recursive mapping, no output on mapping
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- taken from https://lazy.folke.io/installation
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -22,12 +32,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     end
 end
 vim.opt.rtp:prepend(lazypath)
-
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
 
 require("lazy").setup({
     -- theme
