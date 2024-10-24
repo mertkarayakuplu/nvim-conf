@@ -30,6 +30,9 @@ require("lazy").setup({
 		priority = 1000,
 		opts = {},
 	},
+	{
+    "williamboman/mason.nvim",
+  }
 })
 
 -- tokyonight
@@ -71,3 +74,8 @@ require("tokyonight").setup({
 	on_highlights = function(highlights, colors) end,
 })
 vim.cmd([[colorscheme tokyonight]])
+
+
+
+-- mason
+require("mason").setup()
