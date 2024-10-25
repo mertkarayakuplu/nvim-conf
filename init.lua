@@ -217,6 +217,12 @@ require("lazy").setup({
             "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
     },
+    -- telescope
+    {
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.8",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
 })
 
 -- tokyonight
@@ -278,7 +284,23 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
--- shortcuts / settings
+-- telescope
 
+local telescope_builtin = require("telescope.builtin")
+-- local builtingr = require("telescope.builtin").live_grep({grep_open_files=true})
+vim.keymap.set("n", "<leader>f", telescope_builtin.find_files, {})
+vim.keymap.set("n", "<leader>g", telescope_builtin.live_grep, {})
+-- search in the list of open files
+-- vim.keymap.set("n", "<leader>b", telescope_builtin.buffers, {})
+-- search in the contents of open files instead
+vim.keymap.set(
+    "n",
+    "<leader>b",
+    telescope_builtin.current_buffer_fuzzy_find,
+    {}
+)
+vim.keymap.set("n", "<leader>h", telescope_builtin.help_tags, {})
+
+-- sidebar
 vim.cmd([[colorscheme tokyonight]])
 map("n", "<leader>e", ":Neotree focus toggle=true<CR>")
