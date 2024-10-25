@@ -223,6 +223,8 @@ require("lazy").setup({
         tag = "0.1.8",
         dependencies = { "nvim-lua/plenary.nvim" },
     },
+    -- telescope / fzy
+    { "nvim-telescope/telescope-fzy-native.nvim" },
 })
 
 -- tokyonight
@@ -285,6 +287,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- telescope
+require("telescope").setup({
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = true,
+            override_file_sorter = true,
+        },
+    },
+})
+
+require("telescope").load_extension("fzy_native")
 
 local telescope_builtin = require("telescope.builtin")
 -- local builtingr = require("telescope.builtin").live_grep({grep_open_files=true})
