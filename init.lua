@@ -1,6 +1,14 @@
 -- Sources / Inspirations / Examples / Or just good stuff in general,
 -- https://github.com/tralph3/.dotfiles/blob/master/configs/neovim.org
 
+-- lazy load
+vim.loader.enable()
+
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.neo_tree_remove_legacy_commands = 1
+
 -- Options
 vim.opt.allowrevins = false -- reverse insert mode
 vim.opt.autochdir = false -- auto change working dir
@@ -141,6 +149,30 @@ vim.opt.termguicolors = true
 vim.opt.iskeyword:append('"')
 -- disable hidden buffers, in practice this means no unexpected exits due to closing a buffer
 vim.api.nvim_command("set nohidden")
+
+-- typos
+vim.cmd([[
+    cnoreabbrev W! w!
+    cnoreabbrev W1 w!
+    cnoreabbrev w1 w!
+    cnoreabbrev Q! q!
+    cnoreabbrev Q1 q!
+    cnoreabbrev q1 q!
+    cnoreabbrev Qa! qa!
+    cnoreabbrev Qall! qall!
+    cnoreabbrev Wa wa
+    cnoreabbrev Wq wq
+    cnoreabbrev wQ wq
+    cnoreabbrev WQ wq
+    cnoreabbrev wq1 wq!
+    cnoreabbrev Wq1 wq!
+    cnoreabbrev wQ1 wq!
+    cnoreabbrev WQ1 wq!
+    cnoreabbrev W w
+    cnoreabbrev Q q
+    cnoreabbrev Qa qa
+    cnoreabbrev Qall qall
+]])
 
 -- util
 local map = function(mode, lhs, rhs, opts)
