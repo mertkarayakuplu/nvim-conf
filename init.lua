@@ -348,3 +348,59 @@ vim.keymap.set("n", "<leader>h", telescope_builtin.help_tags, {})
 -- sidebar
 vim.cmd([[colorscheme tokyonight]])
 map("n", "<leader>e", ":Neotree focus toggle=true<CR>")
+
+local lspconfig = require('lspconfig')
+
+lspconfig.ts_ls.setup {
+    capabilities = {
+        textDocument = {
+            codeLens = { dynamicRegistration = true },
+            -- Enable inlay hints
+            completion = {
+                completionItem = {
+                    snippetSupport = true,
+                    preselectSupport = true,
+                }
+            }
+        }
+    },
+    on_attach = function(client, bufnr)
+        client.server_capabilities.inlayHintProvider = true
+    end,
+}
+
+lspconfig.eslint.setup {
+    capabilities = {
+        textDocument = {
+            codeLens = { dynamicRegistration = true },
+            -- Enable inlay hints
+            completion = {
+                completionItem = {
+                    snippetSupport = true,
+                    preselectSupport = true,
+                }
+            }
+        }
+    },
+    on_attach = function(client, bufnr)
+        client.server_capabilities.inlayHintProvider = true
+    end,
+}
+
+lspconfig.phpactor.setup {
+    capabilities = {
+        textDocument = {
+            codeLens = { dynamicRegistration = true },
+            -- Enable inlay hints
+            completion = {
+                completionItem = {
+                    snippetSupport = true,
+                    preselectSupport = true,
+                }
+            }
+        }
+    },
+    on_attach = function(client, bufnr)
+        client.server_capabilities.inlayHintProvider = true
+    end,
+}
