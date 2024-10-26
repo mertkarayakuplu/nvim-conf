@@ -1,3 +1,10 @@
+-- After Installation,
+-- Run once,
+-- :TSInstall all
+--
+-- Run once a month or so,
+-- :TSUpdate
+--
 -- Sources / Inspirations / Examples / Or just good stuff in general,
 -- https://github.com/tralph3/.dotfiles/blob/master/configs/neovim.org
 
@@ -217,6 +224,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+
+    -- treesitter
+    { "nvim-treesitter/nvim-treesitter" },
+    { "nvim-treesitter/nvim-treesitter-context" },
     -- theme
     {
         "folke/tokyonight.nvim",
