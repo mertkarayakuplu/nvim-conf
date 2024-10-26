@@ -255,8 +255,10 @@ require("lazy").setup({
         tag = "0.1.8",
         dependencies = { "nvim-lua/plenary.nvim" },
     },
-    -- telescope / fzy
+    -- telescope / fzf
     { "nvim-telescope/telescope-fzy-native.nvim" },
+    -- telescope / fzy
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 })
 
 -- tokyonight
@@ -328,7 +330,28 @@ require("telescope").setup({
     },
 })
 
-require("telescope").load_extension("fzy_native")
+local enable_fzy = os.getenv("fzy") and true or false
+
+-- simple real example, assume assume annotate/index.jsx
+-- fzy is filtered out for 'annotate.jsx'
+-- fzf is not, so fzf is fuzzier, if that makes sense
+if enable_fzy then
+    require("telescope").load_extension("fzy_native")
+else
+    require("telescope").setup({
+        extensions = {
+            fzf = {
+                fuzzy = true, -- false will only do exact matching
+                override_generic_sorter = true, -- override the generic sorter
+                override_file_sorter = true, -- override the file sorter
+                case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+                -- the default case_mode is "smart_case"
+            },
+        },
+    })
+
+    require("telescope").load_extension("fzf")
+end
 
 local telescope_builtin = require("telescope.builtin")
 -- local builtingr = require("telescope.builtin").live_grep({grep_open_files=true})
