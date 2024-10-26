@@ -249,6 +249,12 @@ require("lazy").setup({
             "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
     },
+    -- lualine / powerline
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+
     -- telescope
     {
         "nvim-telescope/telescope.nvim",
@@ -312,6 +318,9 @@ require("mason").setup()
 
 -- lsp
 require("mason-lspconfig").setup()
+
+-- lualine
+require("lualine").setup()
 
 -- format
 require("conform").setup({
