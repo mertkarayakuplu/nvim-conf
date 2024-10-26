@@ -431,4 +431,10 @@ if enable_lsp then
             client.server_capabilities.inlayHintProvider = true
         end,
     })
+
+    map("n", "gd", vim.lsp.buf.definition)
+
+    map("n", "gr", vim.lsp.buf.references)
+
+    map("n", "<F2>", vim.lsp.buf.rename)
 end
