@@ -462,6 +462,24 @@ if enable_lsp then
         end,
     })
 
+    lspconfig.csharp_ls.setup({
+        capabilities = {
+            textDocument = {
+                codeLens = { dynamicRegistration = true },
+                -- Enable inlay hints
+                completion = {
+                    completionItem = {
+                        snippetSupport = true,
+                        preselectSupport = true,
+                    },
+                },
+            },
+        },
+        on_attach = function(client, bufnr)
+            client.server_capabilities.inlayHintProvider = true
+        end,
+    })
+
     map("n", "gd", vim.lsp.buf.definition)
 
     map("n", "gr", vim.lsp.buf.references)
