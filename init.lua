@@ -265,6 +265,7 @@ require("lazy").setup({
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" },
     },
+    { "b3nj5m1n/kommentary" },
 })
 
 -- tokyonight
@@ -445,11 +446,18 @@ if enable_lsp then
     map("n", "<F2>", vim.lsp.buf.rename)
 end
 
+-- kommentary
+-- leader c in most cases
+map("n", "<leader>c", "<Plug>kommentary_line_default")
+map("n", "<leader>c", "<Plug>kommentary_motion_default")
+map("x", "<leader>c", "<Plug>kommentary_visual_default")
+-- shift c on insert mode as leader is space
+map("n", "<S-C>", "<Plug>kommentary_line_default")
+-- harpoon
 local harpoon = require("harpoon")
 harpoon:setup()
 local harpoon_ui = require("harpoon.ui")
 
--- harpoon
 -- see https://github.com/ThePrimeagen/harpoon/tree/harpoon2
 -- i should fix this later on, just ported it real quick, ill see about these later
 -- vim.api.nvim_set_keymap('n', '<M-1>', ':lua require("harpoon.ui").nav_file(1)<CR>', {noremap = true, silent = true})
