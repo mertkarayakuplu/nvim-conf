@@ -349,58 +349,63 @@ vim.keymap.set("n", "<leader>h", telescope_builtin.help_tags, {})
 vim.cmd([[colorscheme tokyonight]])
 map("n", "<leader>e", ":Neotree focus toggle=true<CR>")
 
-local lspconfig = require('lspconfig')
+local lspconfig = require("lspconfig")
 
-lspconfig.ts_ls.setup {
-    capabilities = {
-        textDocument = {
-            codeLens = { dynamicRegistration = true },
-            -- Enable inlay hints
-            completion = {
-                completionItem = {
-                    snippetSupport = true,
-                    preselectSupport = true,
-                }
-            }
-        }
-    },
-    on_attach = function(client, bufnr)
-        client.server_capabilities.inlayHintProvider = true
-    end,
-}
+local enable_lsp = os.getenv("lsp") and true or false
 
-lspconfig.eslint.setup {
-    capabilities = {
-        textDocument = {
-            codeLens = { dynamicRegistration = true },
-            -- Enable inlay hints
-            completion = {
-                completionItem = {
-                    snippetSupport = true,
-                    preselectSupport = true,
-                }
-            }
-        }
-    },
-    on_attach = function(client, bufnr)
-        client.server_capabilities.inlayHintProvider = true
-    end,
-}
+-- use lsp= nvim for lsp, and nvim for non-lsp
+if enable_lsp then
+    lspconfig.ts_ls.setup({
+        capabilities = {
+            textDocument = {
+                codeLens = { dynamicRegistration = true },
+                -- Enable inlay hints
+                completion = {
+                    completionItem = {
+                        snippetSupport = true,
+                        preselectSupport = true,
+                    },
+                },
+            },
+        },
+        on_attach = function(client, bufnr)
+            client.server_capabilities.inlayHintProvider = true
+        end,
+    })
 
-lspconfig.phpactor.setup {
-    capabilities = {
-        textDocument = {
-            codeLens = { dynamicRegistration = true },
-            -- Enable inlay hints
-            completion = {
-                completionItem = {
-                    snippetSupport = true,
-                    preselectSupport = true,
-                }
-            }
-        }
-    },
-    on_attach = function(client, bufnr)
-        client.server_capabilities.inlayHintProvider = true
-    end,
-}
+    lspconfig.eslint.setup({
+        capabilities = {
+            textDocument = {
+                codeLens = { dynamicRegistration = true },
+                -- Enable inlay hints
+                completion = {
+                    completionItem = {
+                        snippetSupport = true,
+                        preselectSupport = true,
+                    },
+                },
+            },
+        },
+        on_attach = function(client, bufnr)
+            client.server_capabilities.inlayHintProvider = true
+        end,
+    })
+
+    lspconfig.phpactor.setup({
+        capabilities = {
+            textDocument = {
+                codeLens = { dynamicRegistration = true },
+                -- Enable inlay hints
+                completion = {
+                    completionItem = {
+                        snippetSupport = true,
+                        preselectSupport = true,
+                    },
+                },
+            },
+        },
+        on_attach = function(client, bufnr)
+            client.server_capabilities.inlayHintProvider = true
+        end,
+    })
+end
