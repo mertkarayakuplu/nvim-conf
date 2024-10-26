@@ -282,7 +282,10 @@ require("lazy").setup({
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" },
     },
+    -- kommentary
     { "b3nj5m1n/kommentary" },
+    -- blame
+    { "APZelos/blamer.nvim" },
 })
 
 -- tokyonight
@@ -506,3 +509,20 @@ end)
 vim.keymap.set("n", "<leader>w", function()
     harpoon:list():remove()
 end)
+
+-- blamer
+
+local enable_blamer = os.getenv("b") and true or false
+
+if enable_blamer then
+    vim.g.blamer_enabled = 1
+    vim.g.blamer_delay = 500
+    vim.g.blamer_show_in_visual_modes = 1
+    vim.g.blamer_show_in_insert_modes = 0
+    vim.g.blamer_prefix = ""
+    -- <author>, <author-mail>, <author-time>, <committer>, <committer-mail>, <committer-time>, <summary>, <commit-short>, <commit-long>
+    vim.g.blamer_template = "<committer-time> <summary> <committer>"
+    vim.g.blamer_date_format = "%d/%m/%y"
+    vim.g.blamer_relative_time = 1
+    -- highlight Blamer guifg=lightgrey
+end

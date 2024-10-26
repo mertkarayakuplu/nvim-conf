@@ -1,4 +1,5 @@
 {
+  "blamer.nvim": { "branch": "master", "commit": "e0d43c11697300eb68f00d69df8b87deb0bf52dc" },
   "conform.nvim": { "branch": "master", "commit": "8a3fd27fddffe2d2eb24eab90e105ad66e20423c" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
   "image.nvim": { "branch": "master", "commit": "88e9693e188b8464b1c426aebb4389fd9db2fcbf" },
