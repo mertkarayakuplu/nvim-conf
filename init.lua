@@ -259,6 +259,12 @@ require("lazy").setup({
     { "nvim-telescope/telescope-fzy-native.nvim" },
     -- telescope / fzy
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    -- harpoon
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
 })
 
 -- tokyonight
@@ -438,3 +444,37 @@ if enable_lsp then
 
     map("n", "<F2>", vim.lsp.buf.rename)
 end
+
+local harpoon = require("harpoon")
+harpoon:setup()
+local harpoon_ui = require("harpoon.ui")
+
+-- harpoon
+-- see https://github.com/ThePrimeagen/harpoon/tree/harpoon2
+-- i should fix this later on, just ported it real quick, ill see about these later
+-- vim.api.nvim_set_keymap('n', '<M-1>', ':lua require("harpoon.ui").nav_file(1)<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<M-2>', ':lua require("harpoon.ui").nav_file(2)<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<M-3>', ':lua require("harpoon.ui").nav_file(3)<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<M-4>', ':lua require("harpoon.ui").nav_file(4)<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<M-5>', ':lua require("harpoon.ui").nav_file(5)<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<M-6>', ':lua require("harpoon.ui").nav_file(6)<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<M-7>', ':lua require("harpoon.ui").nav_file(7)<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<M-8>', ':lua require("harpoon.ui").nav_file(8)<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<M-9>', ':lua require("harpoon.ui").nav_file(9)<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<M-0>', ':lua require("harpoon.ui").nav_file(0)<CR>', {noremap = true, silent = true})
+-- for i = 1, 9 do
+--   vim.api.nvim_set_keymap('n', '<M-' .. i .. '>', ':lua harpoon_ui.nav_file(' .. i .. ')<CR>', {noremap = true, silent = true})
+-- end
+
+require("telescope").load_extension("harpoon")
+
+vim.keymap.set("n", "<leader>m", function()
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+
+vim.keymap.set("n", "<leader>q", function()
+    harpoon:list():add()
+end)
+vim.keymap.set("n", "<leader>w", function()
+    harpoon:list():remove()
+end)
