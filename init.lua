@@ -340,6 +340,15 @@ require("lualine").setup()
 require("conform").setup({
     formatters_by_ft = {
         lua = { "stylua" },
+        php = {
+            command = "php-cs-fixer",
+            args = {
+                "fix",
+                "$FILENAME",
+                "--rules=@PSR12",
+            },
+            stdin = false,
+        },
     },
 })
 
