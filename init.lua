@@ -530,6 +530,10 @@ vim.keymap.set("n", "<leader>m", function()
     harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
 
+vim.keymap.set("n", "<leader><leader>", function()
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+
 vim.keymap.set("n", "<leader>q", function()
     harpoon:list():add()
 end)
