@@ -224,7 +224,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-
     -- treesitter
     { "nvim-treesitter/nvim-treesitter" },
     { "nvim-treesitter/nvim-treesitter-context" },
@@ -286,6 +285,10 @@ require("lazy").setup({
     { "b3nj5m1n/kommentary" },
     -- blame
     { "APZelos/blamer.nvim" },
+}, {
+    rocks = {
+        enabled = false,
+    },
 })
 
 -- tokyonight
@@ -346,6 +349,14 @@ require("conform").setup({
                 "fix",
                 "$FILENAME",
                 "--rules=@PSR12",
+            },
+            stdin = false,
+        },
+        tex = {
+            command = "latexindent",
+            args = {
+                "-l", -- to format according to LaTeX style
+                "$FILENAME",
             },
             stdin = false,
         },
